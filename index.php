@@ -7,6 +7,9 @@
       body {
         padding-top: 60px;
       }
+	  .container {
+		width: 1050px;
+	  }
     </style>
   </head>
 
@@ -33,6 +36,7 @@
     </div>
 
     <div class="container">
+	<div class="container" id="pg1" style="display:none;">
 		<form class="form-horizontal">
   <div class="control-group">
     <label class="control-label" for="inputType">Select Type</label>
@@ -69,17 +73,113 @@
 	  <select id="inputToss" disabled="disabled">
   <option>--Select--</option>
 </select>
+<select id="inputSelect" disabled="disabled">
+  <option>--Select--</option>
+  <option>Batting</option>
+  <option>Bowling</option>
+</select>
   </div>
 </div>
   <div class="control-group">
     <div class="controls">
-      <button type="button" id="start" class="btn">Start Match</button>
+      <button type="button" id="start" class="btn" disabled="displayed">Start Match</button>
     </div>
   </div>
 
 </div>
 
 </form>
+</div>
+<div class="container" id="pg2" style="display:block;">
+<form class="form-horizontal">
+<div id="play1" class="span3">
+<table class="table table-striped" width="100%">
+<tr><td><a href=''>"+playA[i]+"</a></td></tr>
+</table>
+</div>
+
+<div id="score" class="span7" style="text-align:center;">
+<h3>
+<span id="team1">New Zealand</span> Vs <span id="team2">West indies</span>
+</h3>
+<!-- team1 score -->
+<div class="span2 thumbnail">
+<h3><span id="Team1Score">0</span>/<span id="Team1Wicket">0</span></h3>
+<div class="thumbnail">
+Overs <span id="Team1Overs">0</span>.<span id="Team1Balls">0</span>
+</div>
+</div>
+<div class="span2 thumbnail">
+<!--
+<div class="thumbnail">
+Reqd. RR 12.34
+</div>
+-->
+<div class="thumbnail">
+Curr. RR <span id="CRR">12.34</span>
+</div>
+<div class="thumbnail">
+Extras <span id="extras">0</span>
+</div>
+</div>
+<!-- team2 score -->
+<div class="span2 thumbnail">
+<h3><span id="Team2Score">0</span>/<span id="Team2Wicket">0</span></h3>
+<div class="thumbnail">
+Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
+</div>
+</div>
+<!-- batsman -->
+<div class="span3 thumbnail" style="margin-top:10px;text-align:left;">
+<span class="pull-right">R(B)</span><br />
+<span id="bat1"></span> <span id="bat1s" class="pull-right"><span id="r1">25</span>(<span id="b1">30</span>)</span><br />
+<span id="bat2"></span> <span id="bat2s" class="pull-right"><span id="r1">25</span>(<span id="b1">30</span>)</span> 
+</div>
+<!-- bowlers -->
+<div class="span3 thumbnail" style="margin-top:10px;text-align:left;">
+<span class="pull-right">O.W.M.R</span><br />
+<span id="bowl1"></span> <span id="bowl1s" class="pull-right"><span id="o1">10</span>.<span id="w1">2</span>.<span id="m1">4</span>.<span id="r1">40</span></span><br />
+<span id="bowl2"></span> <span id="bowl2s" class="pull-right"><span id="o2">10</span>.<span id="w2">2</span>.<span id="m2">4</span>.<span id="r2">40</span></span> 
+</div>
+<!-- number of balls -->
+<div class="span6 thumbnail" id="no_balls" style="margin-top:10px;text-align:left;">
+<div class="span1 thumbnail">0</div>
+<div class="span1 thumbnail">0</div>
+<div class="span1 thumbnail">6</div>
+<div class="span1 thumbnail">4</div>
+<div class="span1 thumbnail">4</div>
+<div class="span1 thumbnail">W</div>
+</div>
+
+<!-- runs -->
+<div class="span6 thumbnail" id="no_balls" style="margin-top:10px;text-align:left;">
+<div class="span1 thumbnail">
+	<input type="radio" name="runs" value="0" checked="checked"> 0<br />
+	<input type="radio" name="runs" value="1"> 1<br />
+	<input type="radio" name="runs" value="2"> 2<br />
+	<input type="radio" name="runs" value="3"> 3<br />
+	<input type="radio" name="runs" value="4"> 4<br />
+	<input type="radio" name="runs" value="5"> 5<br />
+	<input type="radio" name="runs" value="6"> 6<br />
+</div>
+<div class="span2 thumbnail">
+	<input type="radio" name="ext" value="gb" checked="checked"> Good Ball<br />
+	<input type="radio" name="ext" value="nb"> No ball<br />
+	<input type="radio" name="ext" value="w"> Wide<br />
+	<input type="radio" name="ext" value="b"> Bye<br />
+	<input type="radio" name="ext" value="lb"> Leg Bye<br />
+</div>
+<button type="button" class="btn" id="nxtBall">Next Ball</button>
+</div>
+</div>
+
+<div id="play2" class="span3 pull-right">
+<table class="table table-striped" width="100%">
+<tr><td><a href=''>"+playA[i]+"</a></td></tr>
+</table>
+</div>
+</form>
+</div>
     </div> <!-- /container -->
 
     <!-- Le javascript
@@ -87,83 +187,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function() {
-	
-	var playA = [];
-	var playB = [];
-	
-		$('#inputType').bind("change",function() {
-			if($(this).val()=="--Select--")
-				$('#TeamA, #TeamB').attr("disabled","disabled");
-				else
-				$('#TeamA, #TeamB').removeAttr("disabled");	
-		});
-	
-	var teams=["India","Australia","Pakistan","England","South Africa","New Zealand","Sri Lanka","West Indies","Zimbabwe","Bangladesh","Kenya","Ireland","Canada","Netherland","Scotland","Afghanistan","USA"];
-	$('#TeamA, #TeamB').typeahead({
-		source: teams,
-		items: 4
-		});
-	$('#TeamB').bind("change", function() {
-			if($('#TeamA').val()==$(this).val())
-			{
-			alert($(this).val()+" cant play aganist same team!!!");
-			$(this).val('');
-			}
-	});
-	
-	$('#squadBtn').bind("click",function(){
-			var A=$('#TeamA').val();
-			var B=$('#TeamB').val();
-			getSquad(A,"squad1");
-			getSquad(B,"squad2");
-			$('#inputToss').removeAttr("disabled")
-								.append($("<option></option>")
-								.attr("value",A)
-								.text(A)); 
-			$('#inputToss').append($("<option></option>")
-								.attr("value",B)
-								.text(B)); 
-	});
-	
-	function getSquad(team,pos)
-	{
-	var myTable = '' ;
-			myTable += '<table class="table table-striped" width="100%">' ;
-			var url = "team.php?A="+team;
-			$.getJSON(url, function(json) {
-                $.each(json, function(k, v) { 	
-					myTable +=   "<tr><td>"+v.id+"</td><td>"+v.name+"</td><td><input type='checkbox' name="+team+" value="+v.name+" class="+team+"></td></tr>";   
-                });
-				myTable +="</table>";
-				$("#"+pos).html(myTable) ;
-				
-        });
-	}
-		
-	$( "#start" ).on( "click", function(){
-	var A=$('#TeamA').val();
-			var B=$('#TeamB').val();
-	playA=getTeam(A);
-	playB=getTeam(B);
-	alert(playA);
-	alert(playB);
-	});
-	
-	function getTeam(team)
-	{
-	var playingXI = [];
-	$('input.'+team+':checked').each(function() {
-    playingXI.push($(this).attr("value") + this.id);
-	});
-	return playingXI;
-	}
-	
-	
-});
-
-
-	</script>
+	<script type="text/javascript" src="js/cricket.js"></script>
   </body>
 </html>
