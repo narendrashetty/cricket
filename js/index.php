@@ -116,7 +116,7 @@ Reqd. RR 12.34
 </div>
 -->
 <div class="thumbnail">
-Curr. RR <span id="CRR">0.0</span>
+Curr. RR <span id="CRR">12.34</span>
 </div>
 <div class="thumbnail">
 Extras <span id="extras">0</span>
@@ -161,7 +161,6 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 	<input type="radio" name="runs" value="4"> 4<br />
 	<input type="radio" name="runs" value="5"> 5<br />
 	<input type="radio" name="runs" value="6"> 6<br />
-	<input type="radio" name="runs" value="w"> W<br />
 </div>
 <div class="span2 thumbnail">
 	<input type="radio" name="ext" value="gb" checked="checked"> Good Ball<br />
