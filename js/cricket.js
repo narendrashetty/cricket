@@ -4,6 +4,7 @@
 	var playB = [];
 	var A;
 	var B;
+	var flag;
 		$('#inputType').bind("change",function() {
 			if($(this).val()=="--Select--")
 				$('#TeamA, #TeamB').attr("disabled","disabled");
@@ -117,8 +118,8 @@
 		$('#Team1Score').text("0");
 		$('#Team1Wicket').text("0");
 		$('#Team1Overs').text("0");
-		$('#Team2Score').text("n/a");
-		$('#Team2Wicket').text("n/a");
+		$('#Team2Score').text("0");
+		$('#Team2Wicket').text("0");
 		
 		$('.batsman').bind("click",function(){
 			if($('#bat1').text()=='') {
@@ -138,31 +139,53 @@
 		});
 		
 	}
+	
+	flag=0;
+	
 	$('Team1Balls').text('0');
 	$('#nxtBall').bind("click",function(){
 	
 			if($("input:radio[name=ext]:checked").val()=="gb") {
-			if($("input:radio[name=runs]:checked").val()=="w") {
-				$('#Team1Wicket').text(parseInt($('#Team1Wicket').text("0"))+1);
-			} else {
 				if(parseInt($('#Team1Balls').text())<5) {
 					$('#Team1Balls').text(parseInt($('#Team1Balls').text())+1);
 				} else {
 					$('#Team1Balls').text("0");
 					$('#Team1Overs').text(parseInt($('#Team1Overs').text())+1);
 			}
-			}
+			} else if(($("input:radio[name=ext]:checked").val()=="nb")||($("input:radio[name=ext]:checked").val()=="wi")) {
+				$('#extras').text(parseInt($('#extras').text())+1);
+				$('#Team1Score').text(parseInt($('#Team1Score').text())+1);
 			} else {
 				$('#extras').text(parseInt($('#extras').text())+parseInt($("input:radio[name=runs]:checked").val()));
 			}
+			
 			if($("input:radio[name=runs]:checked").val()=="w") {
-				$('#Team1Wicket').text(parseInt($('#Team1Wicket').text("0"))+1);
+				$('#Team1Wicket').text(parseInt($('#Team1Wicket').text())+1);
+				$('#bat1').text(playA[$('#Team1Wicket').text()+1]);
 			} else {
 			$('#Team1Score').text(parseInt($('#Team1Score').text())+parseInt($("input:radio[name=runs]:checked").val()));
+				if(flag==0) {
+					$('#r1').text(parseInt($('#r1').text())+parseInt($("input:radio[name=runs]:checked").val()));
+					$('#b1').text(parseInt($('#b1').text())+1);
+					if((parseInt($("input:radio[name=runs]:checked").val())/2)==0) 
+						flag=0;
+					else
+						flag=1;
+				} else if(flag==1) {
+					$('#r2').text(parseInt($('#r2').text())+parseInt($("input:radio[name=runs]:checked").val()));
+					$('#b2').text(parseInt($('#b2').text())+1);
+					if((parseInt($("input:radio[name=runs]:checked").val())/2)==0) 
+						flag=1;
+					else
+						flag=0;
+				}
+			}
 			var balls=($('#Team1Overs').text()*6)+parseInt($('#Team1Balls').text());
 			//console.log(balls);
 		$('#CRR').text(((parseInt($('#Team1Score').text())/parseInt(balls))*6).toFixed(2));
 		});
+		
+		
 	function getTeam(team)
 	{
 	var playingXI = [];

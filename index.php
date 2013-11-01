@@ -132,8 +132,8 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 <!-- batsman -->
 <div class="span3 thumbnail" style="margin-top:10px;text-align:left;">
 <span class="pull-right">R(B)</span><br />
-<span id="bat1"></span> <span id="bat1s" class="pull-right"><span id="r1">25</span>(<span id="b1">30</span>)</span><br />
-<span id="bat2"></span> <span id="bat2s" class="pull-right"><span id="r1">25</span>(<span id="b1">30</span>)</span> 
+<span id="bat1"></span> <span id="bat1s" class="pull-right"><span id="r1">0</span>(<span id="b1">0</span>)</span><br />
+<span id="bat2"></span> <span id="bat2s" class="pull-right"><span id="r2">0</span>(<span id="b2">0</span>)</span> 
 </div>
 <!-- bowlers -->
 <div class="span3 thumbnail" style="margin-top:10px;text-align:left;">
@@ -141,7 +141,7 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 <span id="bowl1"></span> <span id="bowl1s" class="pull-right"><span id="o1">10</span>.<span id="w1">2</span>.<span id="m1">4</span>.<span id="r1">40</span></span><br />
 <span id="bowl2"></span> <span id="bowl2s" class="pull-right"><span id="o2">10</span>.<span id="w2">2</span>.<span id="m2">4</span>.<span id="r2">40</span></span> 
 </div>
-<!-- number of balls -->
+<!-- number of balls 
 <div class="span6 thumbnail" id="no_balls" style="margin-top:10px;text-align:left;">
 <div class="span1 thumbnail">0</div>
 <div class="span1 thumbnail">0</div>
@@ -150,7 +150,7 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 <div class="span1 thumbnail">4</div>
 <div class="span1 thumbnail">W</div>
 </div>
-
+-->
 <!-- runs -->
 <div class="span6 thumbnail" id="no_balls" style="margin-top:10px;text-align:left;">
 <div class="span1 thumbnail">
@@ -166,7 +166,7 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 <div class="span2 thumbnail">
 	<input type="radio" name="ext" value="gb" checked="checked"> Good Ball<br />
 	<input type="radio" name="ext" value="nb"> No ball<br />
-	<input type="radio" name="ext" value="w"> Wide<br />
+	<input type="radio" name="ext" value="wi"> Wide<br />
 	<input type="radio" name="ext" value="b"> Bye<br />
 	<input type="radio" name="ext" value="lb"> Leg Bye<br />
 </div>
