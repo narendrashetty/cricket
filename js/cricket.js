@@ -6,6 +6,7 @@
 	var playB = [];
 	var A;
 	var B;
+	var C;
 	var flag=0;
 		$('#inputType').bind("change",function() {
 			if($(this).val()=="--Select--")
@@ -87,7 +88,7 @@
 	if(playA.length!=playB.length) 
 	alert("handicap match not possible choose equal number of players");
 	else {
-	alert(playA.length);
+	//alert(playA.length);
 	if($('#inputToss').val()=='--Select--')
 	{
 		alert("Who won the toss!!");
@@ -98,9 +99,13 @@
 			playA=getTeam(A);
 			playB=getTeam(B);
 		} else if((($('#inputToss').val()==B)&&($('#inputSelect').val()=="Batting"))||(($('#inputToss').val()==A)&&($('#inputSelect').val()=="Bowling"))){
-			playA=getTeam(B);
-			playB=getTeam(A);
+			C=A;
+			A=B;
+			B=C;
+			playA=getTeam(A);
+			playB=getTeam(B);
 		}
+		
 		$('#pg2').css({"display":"block"});
 		$('#pg1').css({"display":"none"});
 		var myTable2 = '' ;
@@ -185,6 +190,7 @@
 					innings=2;
 					} else {
 					alert("match over");
+					checkWinner();
 					}
 				}else {
 				if(flag==0) {
@@ -221,7 +227,7 @@
 					$('#b1').text(parseInt($('#b1').text())+1);
 					
 					$('#bruns'+nbat1).text($('#r1').text());
-					$('#bballs'+nbat1).text($('#r1').text());
+					$('#bballs'+nbat1).text($('#b1').text());
 					
 					//alert((parseInt($("input:radio[name=runs]:checked").val())%2));
 					if((parseInt($("input:radio[name=runs]:checked").val())%2)==0) 
@@ -247,9 +253,25 @@
 					}
 				}
 			}
+			
+			
 			var balls=($('#Team1Overs').text()*6)+parseInt($('#Team1Balls').text());
 			//console.log(balls);
 		$('#CRR').text(((parseInt($('#Team1Score').text())/parseInt(balls))*6).toFixed(2));
+		if(target<=parseInt($('#Team1Score').text()))
+		checkWinner();
+		if(parseInt($('#Team1Overs').text())==novers) {
+					if(innings==1) {
+						alert("all out start second innings");
+						changeInnings();
+						innings=2;
+					} else {
+						alert("match over");
+						checkWinner();
+					}
+			}
+			
+			
 		});
 		
 		
@@ -298,6 +320,23 @@
 	 $('#target-container').css({"display":"block"});
 	 $('#target').text(target);
 		
+	}
+	
+	function checkWinner()
+	{
+		if(innings==2) {
+		var winner;
+		if(target<=parseInt($('#Team1Score').text())) {
+			winner=B;
+		}else{
+			winner=A;
+		}
+		
+		console.log($('#Team1Score').text());
+		console.log(target);
+		alert(winner);
+		$('body').addClass("disabled");
+		}
 	}
 	
 	
