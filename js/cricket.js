@@ -106,7 +106,7 @@
 		var myTable2 = '' ;
 		myTable = '<table id="innings1bat" class="table table-striped" width="100%">' ;		
 		for(var i=0;i<playA.length;i++) {
-			myTable += "<tr><td id='innings1' class='batsman'>"+playA[i]+"</td><td id='bscore"+i+"'><span id='bruns"+i+"'>0</span>(<span id='bballs"+i+"'>0</span>)</td></tr>";   
+			myTable += "<tr><td id='innings1' class='batsman'>"+playA[i]+"</td><td id='1bscore"+i+"'><span id='bruns"+i+"'>0</span>(<span id='bballs"+i+"'>0</span>)</td></tr>";   
 		}
 		myTable+="</table>";
 		$("#play1").html(myTable);
@@ -132,7 +132,7 @@
 		$('#Team2Wicket').text("0");
 		$('#bat1').text(playA[0]);
 		$('#bat2').text(playA[1]);
-		$('#bscore0, #bscore1').addClass("onstrike");
+		$('#'+innings+'bscore0, #'+innings+'bscore1').addClass("onstrike");
 		
 		
 	/*	
@@ -183,12 +183,15 @@
 					alert("all out start second innings");
 					changeInnings();
 					innings=2;
-					} else
+					} else {
 					alert("match over");
-				else {
+					}
+				}else {
 				if(flag==0) {
 					$('#bat1').text(playA[parseInt($('#Team1Wicket').text())+1]);
-					$('#bscore'+nbat1).removeClass("onstrike");
+					
+					
+					$('#'+innings+'bscore'+nbat1).removeClass("onstrike");
 					$('#r1').text('0');
 					$('#b1').text('0');
 					if(nbat1>nbat2) {
@@ -196,10 +199,11 @@
 					} else {
 						nbat1=nbat2+1;
 					}
-					$('#bscore'+nbat1).addClass("onstrike");
+					alert(innings);
+					$('#'+innings+'bscore'+nbat1).addClass("onstrike");
 				} else if(flag==1) {
 					$('#bat2').text(playA[parseInt($('#Team1Wicket').text())+1]);
-					$('#bscore'+nbat2).removeClass("onstrike");
+					$('#'+innings+'bscore'+nbat2).removeClass("onstrike");
 					$('#r2').text('0');
 					$('#b2').text('0');
 					if(nbat1>nbat2) {
@@ -207,7 +211,7 @@
 					} else {
 						nbat2=nbat2+1;
 					}
-					$('#bscore'+nbat2).addClass("onstrike");
+					$('#'+innings+'bscore'+nbat2).addClass("onstrike");
 				}
 			}
 			} else {
@@ -259,13 +263,12 @@
 	}
 	
 	function changeInnings() {
-	
-		var temp=$('#play1').text();
-		$('#play1').html($('#play2').text());
+		var temp=$('#play1').html();
+		$('#play1').html($('#play2').html());
 		$('#play2').html(temp);
 		
 		$('#Team2Score').text($('#Team1Score').text());
-		target=parseInt($('#Team1Score').text());
+		target=parseInt($('#Team1Score').text())+1;
 		$('#Team1Score').text("0");
 		
 		$('#Team2Wicket').text($('#Team1Wicket').text());
@@ -274,13 +277,27 @@
 		$('#Team2Overs').text($('#Team1Overs').text());
 		$('#Team1Overs').text("0");
 		
+		$('#Team2Balls').text($('#Team1Balls').text());
+		$('#Team1Balls').text("0");
+		
 		
 		for(i=0;i<playA.length;i++)
 			playA[i]=playB[i];
 		
 		$('#bat1').text(playA[0]);
 		$('#bat2').text(playA[1]);
-		$('#bscore0, #bscore1').addClass("onstrike");
+		$('#bat2, #bat2s, #'+innings+'bscore'+nbat1+', #'+innings+'bscore'+nbat2).removeClass("onstrike");
+		innings=2;
+		$('#'+innings+'bscore0, #'+innings+'bscore1').addClass("onstrike");
+		$('#r1, #r2, #b1, #b2').text("0");
+		$('#bat1, #bat1s').addClass("onstrike");
+		
+	 nbat1=0;
+	 nbat2=1;
+	 
+	 $('#target-container').css({"display":"block"});
+	 $('#target').text(target);
+		
 	}
 	
 	

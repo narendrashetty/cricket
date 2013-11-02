@@ -123,6 +123,9 @@ Curr. RR <span id="CRR">0.0</span>
 <div class="thumbnail">
 Extras <span id="extras">0</span>
 </div>
+<div id="target-container"class="thumbnail" style="display:none;">
+Target <span id="target">n/a</span>
+</div>
 </div>
 <!-- team2 score -->
 <div class="span2 thumbnail">
