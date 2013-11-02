@@ -36,7 +36,7 @@
     </div>
 
     <div class="container">
-	<div class="container" id="pg1" style="display:none;">
+	<div class="container" id="pg1" style="display:block;">
 		<form class="form-horizontal">
   <div class="control-group">
     <label class="control-label" for="inputType">Select Type</label>
@@ -90,7 +90,7 @@
 
 </form>
 </div>
-<div class="container" id="pg2" style="display:block;">
+<div class="container" id="pg2" style="display:none;">
 <form class="form-horizontal">
 <div id="play1" class="span3">
 <table class="table table-striped" width="100%">

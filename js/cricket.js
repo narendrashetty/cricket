@@ -4,7 +4,7 @@
 	var playB = [];
 	var A;
 	var B;
-	var flag;
+	var flag=0;
 		$('#inputType').bind("change",function() {
 			if($(this).val()=="--Select--")
 				$('#TeamA, #TeamB').attr("disabled","disabled");
@@ -98,7 +98,7 @@
 		var myTable2 = '' ;
 		myTable = '<table class="table table-striped" width="100%">' ;		
 		for(var i=0;i<playA.length;i++) {
-			myTable += "<tr><td class='batsman'>"+playA[i]+"</td></tr>";   
+			myTable += "<tr><td class='batsman'>"+playA[i]+"</td><td id='bscore"+i+"'><span id='bruns"+i+"'>0</span>(<span id='bballs"+i+"'>0</span>)</td></tr>";   
 		}
 		myTable+="</table>";
 		$("#play1").html(myTable);
@@ -120,7 +120,12 @@
 		$('#Team1Overs').text("0");
 		$('#Team2Score').text("0");
 		$('#Team2Wicket').text("0");
+		$('#bat1').text(playA[0]);
+		$('#bat2').text(playA[1]);
+		$('#bscore0, #bscore1').addClass("onstrike");
 		
+		
+	/*	
 		$('.batsman').bind("click",function(){
 			if($('#bat1').text()=='') {
 				$('#bat1').text($(this).text());
@@ -137,11 +142,13 @@
 				$('#bowl1').text($(this).text());
 		
 		});
-		
+	*/
 	}
+	var nbat1=0;
+	var nbat2=1;
+	$('#bat1, #bat1s').addClass("onstrike");
 	
-	flag=0;
-	
+
 	$('Team1Balls').text('0');
 	$('#nxtBall').bind("click",function(){
 	
@@ -161,23 +168,60 @@
 			
 			if($("input:radio[name=runs]:checked").val()=="w") {
 				$('#Team1Wicket').text(parseInt($('#Team1Wicket').text())+1);
-				$('#bat1').text(playA[$('#Team1Wicket').text()+1]);
+				if(flag==0) {
+					$('#bat1').text(playA[parseInt($('#Team1Wicket').text())+1]);
+					$('#bscore'+nbat1).removeClass("onstrike");
+					$('#r1').text('0');
+					$('#b1').text('0');
+					if(nbat1>nbat2) {
+						nbat1=nbat1+1;
+					} else {
+						nbat1=nbat2+1;
+					}
+					$('#bscore'+nbat1).addClass("onstrike");
+				} else if(flag==1) {
+					$('#bat2').text(playA[parseInt($('#Team1Wicket').text())+1]);
+					$('#bscore'+nbat2).removeClass("onstrike");
+					$('#r2').text('0');
+					$('#b2').text('0');
+					if(nbat1>nbat2) {
+						nbat2=nbat1+1;
+					} else {
+						nbat2=nbat2+1;
+					}
+					$('#bscore'+nbat2).addClass("onstrike");
+				}
 			} else {
 			$('#Team1Score').text(parseInt($('#Team1Score').text())+parseInt($("input:radio[name=runs]:checked").val()));
 				if(flag==0) {
 					$('#r1').text(parseInt($('#r1').text())+parseInt($("input:radio[name=runs]:checked").val()));
 					$('#b1').text(parseInt($('#b1').text())+1);
-					if((parseInt($("input:radio[name=runs]:checked").val())/2)==0) 
+					
+					$('#bruns'+nbat1).text($('#r1').text());
+					$('#bballs'+nbat1).text($('#r1').text());
+					
+					//alert((parseInt($("input:radio[name=runs]:checked").val())%2));
+					if((parseInt($("input:radio[name=runs]:checked").val())%2)==0) 
 						flag=0;
-					else
+					else {
 						flag=1;
+						$('#bat2, #bat2s').removeClass("onstrike").addClass("onstrike");
+						$('#bat1, #bat1s').removeClass("onstrike");
+					}
 				} else if(flag==1) {
 					$('#r2').text(parseInt($('#r2').text())+parseInt($("input:radio[name=runs]:checked").val()));
 					$('#b2').text(parseInt($('#b2').text())+1);
-					if((parseInt($("input:radio[name=runs]:checked").val())/2)==0) 
+					
+					$('#bruns'+nbat2).text($('#r2').text());
+					$('#bballs'+nbat2).text($('#r2').text());
+					
+					if((parseInt($("input:radio[name=runs]:checked").val())%2)==0) 
 						flag=1;
-					else
+					else {
 						flag=0;
+						$('#bat1, #bat1s').removeClass("onstrike").addClass("onstrike");
+						$('#bat2, #bat2s').removeClass("onstrike");
+					}
 				}
 			}
 			var balls=($('#Team1Overs').text()*6)+parseInt($('#Team1Balls').text());
