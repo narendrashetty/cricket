@@ -1,5 +1,7 @@
 	$(document).ready(function() {
-	
+	var innings=1;
+	var novers;
+	var target=-1;
 	var playA = [];
 	var playB = [];
 	var A;
@@ -8,8 +10,10 @@
 		$('#inputType').bind("change",function() {
 			if($(this).val()=="--Select--")
 				$('#TeamA, #TeamB').attr("disabled","disabled");
-				else
+				else {
 				$('#TeamA, #TeamB').removeAttr("disabled");	
+				novers=$(this).val();
+				}
 		});
 	
 	var teams=["India","Australia","Pakistan","England","South Africa","New Zealand","Sri Lanka","West Indies","Zimbabwe","Bangladesh","Kenya","Ireland","Canada","Netherland","Scotland","Afghanistan","USA"];
@@ -20,7 +24,7 @@
 	$('#TeamB').bind("change", function() {
 			if($('#TeamA').val()==$(this).val())
 			{
-			alert($(this).val()+" cant play aganist same team!!!");
+			alert($(this).val()+" cant play against same team!!!");
 			$(this).val('');
 			}
 	});
@@ -80,6 +84,10 @@
 			var B=$('#TeamB').val();
 	playA=getTeam(A);
 	playB=getTeam(B);
+	if(playA.length!=playB.length) 
+	alert("handicap match not possible choose equal number of players");
+	else {
+	alert(playA.length);
 	if($('#inputToss').val()=='--Select--')
 	{
 		alert("Who won the toss!!");
@@ -96,19 +104,21 @@
 		$('#pg2').css({"display":"block"});
 		$('#pg1').css({"display":"none"});
 		var myTable2 = '' ;
-		myTable = '<table class="table table-striped" width="100%">' ;		
+		myTable = '<table id="innings1bat" class="table table-striped" width="100%">' ;		
 		for(var i=0;i<playA.length;i++) {
-			myTable += "<tr><td class='batsman'>"+playA[i]+"</td><td id='bscore"+i+"'><span id='bruns"+i+"'>0</span>(<span id='bballs"+i+"'>0</span>)</td></tr>";   
+			myTable += "<tr><td id='innings1' class='batsman'>"+playA[i]+"</td><td id='bscore"+i+"'><span id='bruns"+i+"'>0</span>(<span id='bballs"+i+"'>0</span>)</td></tr>";   
 		}
 		myTable+="</table>";
 		$("#play1").html(myTable);
-		myTable = '<table class="table table-striped" width="100%">' ;		
+		myTable = '<table id="innings2bat" class="table table-striped" width="100%">' ;		
 		for(var i=0;i<playB.length;i++) {
-			myTable += "<tr><td class='bowler'>"+playB[i]+"</td></tr>";   
+			myTable += "<tr><td id='innings2' class='batsman'>"+playB[i]+"</td><td id='2bscore"+i+"'><span id='bruns"+i+"'>0</span>(<span id='bballs"+i+"'>0</span>)</td></tr>";   
+
 		}
 		myTable+="</table>";
 		$("#play2").html(myTable);
 		fun();
+	}
 	}
 	});
 	
@@ -168,6 +178,14 @@
 			
 			if($("input:radio[name=runs]:checked").val()=="w") {
 				$('#Team1Wicket').text(parseInt($('#Team1Wicket').text())+1);
+				if(parseInt($('#Team1Wicket').text())==playA.length-1) {
+					if(innings==1) {
+					alert("all out start second innings");
+					changeInnings();
+					innings=2;
+					} else
+					alert("match over");
+				else {
 				if(flag==0) {
 					$('#bat1').text(playA[parseInt($('#Team1Wicket').text())+1]);
 					$('#bscore'+nbat1).removeClass("onstrike");
@@ -191,6 +209,7 @@
 					}
 					$('#bscore'+nbat2).addClass("onstrike");
 				}
+			}
 			} else {
 			$('#Team1Score').text(parseInt($('#Team1Score').text())+parseInt($("input:radio[name=runs]:checked").val()));
 				if(flag==0) {
@@ -237,6 +256,31 @@
     playingXI.push($(this).attr("value") + this.id);
 	});
 	return playingXI;
+	}
+	
+	function changeInnings() {
+	
+		var temp=$('#play1').text();
+		$('#play1').html($('#play2').text());
+		$('#play2').html(temp);
+		
+		$('#Team2Score').text($('#Team1Score').text());
+		target=parseInt($('#Team1Score').text());
+		$('#Team1Score').text("0");
+		
+		$('#Team2Wicket').text($('#Team1Wicket').text());
+		$('#Team1Wicket').text("0");
+		
+		$('#Team2Overs').text($('#Team1Overs').text());
+		$('#Team1Overs').text("0");
+		
+		
+		for(i=0;i<playA.length;i++)
+			playA[i]=playB[i];
+		
+		$('#bat1').text(playA[0]);
+		$('#bat2').text(playA[1]);
+		$('#bscore0, #bscore1').addClass("onstrike");
 	}
 	
 	

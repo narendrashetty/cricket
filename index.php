@@ -39,13 +39,15 @@
 	<div class="container" id="pg1" style="display:block;">
 		<form class="form-horizontal">
   <div class="control-group">
-    <label class="control-label" for="inputType">Select Type</label>
+    <label class="control-label" for="inputType">Select Number of Overs</label>
     <div class="controls">
       <select id="inputType">
   <option>--Select--</option>
-  <option>Test</option>
-  <option>ODI</option>
-  <option>T20</option>
+  <option>5</option>
+  <option>10</option>
+  <option>20</option>
+  <option>40</option>
+  <option>50</option>
 </select>
     </div>
   </div>
