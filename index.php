@@ -1,43 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <link href="css/bootstrap.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Original+Surfer' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Elsie:400,900' rel='stylesheet' type='text/css'>
     <style>
+	 
       body {
-        padding-top: 60px;
+        padding-bottom: 40px;
+		background-image: url('img/wrap.png');
+		color: #4c4b4b;
+		font-family: 'Original Surfer', cursive;
+		font-size: 14px;
       }
-	  .container {
+	   .container {
 		width: 1050px;
+	  }
+	  .hero-unit h2 {
+	  font-family: 'Elsie', cursive;
+	  font-weight: 900;
+	  font-size: 44px;
+	  }
+	  
+		h2 {
+	  font-family: 'Elsie', cursive;
+	  font-weight: 900;
+	  font-size: 22px;
 	  }
     </style>
   </head>
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">Project name</a>
-          <div class="nav-collapse collapse">
+    <div class="navbar">
+        <div class="container" style="height:110px;">
+          <a class="brand" href="#" style="margin-top:30px;">Cric - O - Meter</a>
+          <div class="pull-right" style="margin-top:35px;">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="demo.html">Demo</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
-      </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="full">
 	<!--  Page 1 Starts -->
-	<div class="container" id="pg1" style="display:none;">
+	<div class="container" id="pg1" style="display:block;">
 		<form class="form-horizontal">
   <div class="control-group">
     <label class="control-label" for="inputType">Select Number of Overs</label>
@@ -98,6 +109,7 @@
 <div class="container" id="pg2" style="display:none;">
 <form class="form-horizontal">
 <div id="play1" class="span3">
+Current Batting Team
 <table class="table table-striped" width="100%">
 <tr><td><a href=''>"+playA[i]+"</a></td></tr>
 </table>
@@ -184,6 +196,7 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 </div>
 
 <div id="play2" class="span3 pull-right">
+Current Bowling Team
 <table class="table table-striped" width="100%">
 <tr><td><a href=''>"+playA[i]+"</a></td></tr>
 </table>
@@ -193,7 +206,7 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 <!--  Page 2 Ends -->
 <!--  Page 3 Starts -->
 
-<div class="container row-fluid" id="pg3">
+<div class="container row-fluid" id="pg3" style="display:none;">
 <div class="span12">
 	<p>Congragulations to the Winner</p>
 	<p id="winner">India</p>

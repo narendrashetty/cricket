@@ -1,11 +1,11 @@
 /*!
  * Bootstrap v2.3.2
  *
- * Copyright 2012 Twitter, Inc
+ * Copyright 2013 Twitter, Inc
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ * Designed and built with all the love in the world by @mdo and @fat.
  */
 
 .clearfix {
@@ -3207,7 +3207,6 @@ button.close {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  font-weight: bold;
   /* background-color: #f5f5f5; */
   *background-color: #e6e6e6;
   background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
@@ -3232,7 +3231,7 @@ button.close {
      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
           
   /* box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); */
-  background-color: #127777;
+  background-color: #f3866c;
 transition: all 0.5s;
 }
 
@@ -3341,7 +3340,8 @@ transition: all 0.5s;
   padding-left: 0;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
-          box-sizing: border-box;
+          
+  box-sizing: border-box;
 }
 
 .btn-block + .btn-block {
@@ -4371,7 +4371,7 @@ input[type="submit"].btn.btn-mini {
 .navbar {
   *position: relative;
   *z-index: 2;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   overflow: visible;
 }
 
@@ -4408,8 +4408,8 @@ input[type="submit"].btn.btn-mini {
   clear: both;
 }
 
-.navbar .container {
-  width: auto;
+.navbar {
+	background-color: #f3866c;
 }
 
 .nav-collapse.collapse {
@@ -4422,10 +4422,10 @@ input[type="submit"].btn.btn-mini {
   float: left;
   padding: 10px 20px 10px;
   margin-left: -20px;
-  font-size: 20px;
+  font-size: 50px;
   font-weight: 200;
-  color: #777777;
-  text-shadow: 0 1px 0 #ffffff;
+  color: #FFFFFF;
+  text-shadow: 0 1px 0 #000000;
 }
 
 .navbar .brand:hover,
@@ -4605,6 +4605,7 @@ input[type="submit"].btn.btn-mini {
   display: block;
   float: left;
   margin: 0 10px 0 0;
+  font-size: 15px;
 }
 
 .navbar .nav.pull-right {
@@ -4619,7 +4620,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
   float: none;
   padding: 10px 15px 10px;
-  color: #777777;
+  color: #FFFFFF;
   text-decoration: none;
   text-shadow: 0 1px 0 #ffffff;
 }
@@ -4638,12 +4639,13 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
-  color: #555555;
+  color: #FFFFFF;
   text-decoration: none;
-  background-color: #e5e5e5;
-  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  background-color: #834739;
+  /* -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125); */
      -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
-          box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+          
+  /* box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125); */
 }
 
 .navbar .btn-navbar {
@@ -6130,10 +6132,11 @@ a.badge:focus {
   font-weight: 200;
   line-height: 30px;
   color: inherit;
-  background-color: #eeeeee;
-  -webkit-border-radius: 6px;
+  /* -webkit-border-radius: 6px; */
      -moz-border-radius: 6px;
-          border-radius: 6px;
+          
+  /* border-top-left-radius: 6px; */
+  border-bottom: 1px dotted #C4C4C4;
 }
 
 .hero-unit h1 {
@@ -6172,6 +6175,27 @@ a.badge:focus {
   position: fixed;
 }
 
+.home-section {
+	background-color:#fff;
+	text-align: center;
+	padding: 30px;
+}
+
+.home-section2 {
+	background-color:#fff;
+	text-align: center;
+	padding: 12px;
+}
+
+.home-section i {
+	margin-left: -42px;
+}
+
+.home-second {
+	padding-bottom: 40px;
+	border-bottom: 1px dotted #C4C4C4;
+}
+
 .onstrike {
 	font-weight: bold;
 	color: red;
@@ -6188,3 +6212,37 @@ a.badge:focus {
 	margin-top: 100px;
 	font-size:  80px;
 }
+
+#full {
+	background-color: #fff;
+	height: 800px;
+}
+
+#pg1, #pg2 {
+	margin-top: 30px;
+	margin-left: 17px;
+}
+
+.developers {
+	border-radius: 50%;
+	width: 155px;
+	box-shadow: 0px 0px 22px #000000;
+}
+
+ul.spicesocialwidget {
+float:right;
+position: absolute;
+margin-left: 10%;
+margin-top: -34px;
+}
+ul.spicesocialwidget li {float:left;list-style: none outside none;border:none;}
+ul.spicesocialwidget li a{background-color:transparent;background-image:url('../img/spice-social-gadget-sprite.png');background-repeat:no-repeat;background-size:auto 96px;border:0 none;color:white;direction:ltr;display:block; height:32px;overflow:hidden;text-align:left;text-decoration:none;text-indent:-999em;transition:all 0.2s ease 0s;width:32px}
+.ie7 ul.spicesocialwidget li a, .ie8 ul.spicesocialwidget li a{background-image:url('../img/spice-social-gadget-sprite.png' )}
+ul.spicesocialwidget li.facebook a{ background-position:0 0px}
+ul.spicesocialwidget li.twitter a{ background-position:-256px 0px;}
+ul.spicesocialwidget li.linkedin a{ background-position:-128px 0px}
+ul.spicesocialwidget li.googleplus a{ background-position:-96px 0px}
+ul.spicesocialwidget li.facebook a:hover, #sidebar ul.spicesocialwidget li.facebook a:hover{ background-position:0 -32px}
+ul.spicesocialwidget li.twitter a:hover, #sidebar ul.spicesocialwidget li.twitter a:hover{ background-position:-256px -32px}
+ul.spicesocialwidget li.googleplus a:hover, #sidebar ul.spicesocialwidget li.googleplus a:hover{ background-position:-96px -32px}
+ul.spicesocialwidget li.linkedin a:hover, #sidebar ul.spicesocialwidget li.linkedin a:hover{ background-position:-128px -32px}

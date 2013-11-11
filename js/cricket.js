@@ -115,14 +115,16 @@
 			myTable += "<tr><td id='innings1' class='batsman'>"+playA[i]+"</td><td id='1bscore"+i+"'><span id='bruns"+i+"'>0</span>(<span id='bballs"+i+"'>0</span>)</td></tr>";   
 		}
 		myTable+="</table>";
-		$("#play1").html(myTable);
+		$("#play1").html("<p style='text-align:center;font-size:22px;'>Current Batting Team</p>");
+		$("#play1").append(myTable);
 		myTable = '<table id="innings2bat" class="table table-striped" width="100%">' ;		
 		for(var i=0;i<playB.length;i++) {
 			myTable += "<tr><td id='innings2' class='batsman'>"+playB[i]+"</td><td id='2bscore"+i+"'><span id='bruns"+i+"'>0</span>(<span id='bballs"+i+"'>0</span>)</td></tr>";   
 
 		}
 		myTable+="</table>";
-		$("#play2").html(myTable);
+		$("#play2").html("<p style='text-align:center;font-size:21px;'>Current BowlingTeam</p>");
+		$("#play2").append(myTable);
 		fun();
 	}
 	}
@@ -345,7 +347,11 @@
 		$('#winner').text(winner);
 	}
 	
+	$('#new-match').bind("click",function(){
 	
+		location.reload();
+		
+	});
 	
 });
 
