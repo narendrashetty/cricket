@@ -8,6 +8,7 @@
 	var B;
 	var C;
 	var flag=0;
+	var winner;
 		$('#inputType').bind("change",function() {
 			if($(this).val()=="--Select--")
 				$('#TeamA, #TeamB').attr("disabled","disabled");
@@ -325,7 +326,6 @@
 	function checkWinner()
 	{
 		if(innings==2) {
-		var winner;
 		if(target<=parseInt($('#Team1Score').text())) {
 			winner=B;
 		}else{
@@ -334,10 +334,17 @@
 		
 		console.log($('#Team1Score').text());
 		console.log(target);
-		alert(winner);
+		shift();
 		$('body').addClass("disabled");
 		}
 	}
+	
+	function shift() {
+		$('#pg2').css({"display":"none"});
+		$('#pg3').css({"display":"block"});
+		$('#winner').text(winner);
+	}
+	
 	
 	
 });
