@@ -36,7 +36,8 @@
     </div>
 
     <div class="container">
-	<div class="container" id="pg1" style="display:block;">
+	<!--  Page 1 Starts -->
+	<div class="container" id="pg1" style="display:none;">
 		<form class="form-horizontal">
   <div class="control-group">
     <label class="control-label" for="inputType">Select Number of Overs</label>
@@ -92,6 +93,8 @@
 
 </form>
 </div>
+<!--  Page 1 Ends -->
+<!--  Page 2 Starts -->
 <div class="container" id="pg2" style="display:none;">
 <form class="form-horizontal">
 <div id="play1" class="span3">
@@ -140,12 +143,13 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 <span id="bat1"></span> <span id="bat1s" class="pull-right"><span id="r1">0</span>(<span id="b1">0</span>)</span><br />
 <span id="bat2"></span> <span id="bat2s" class="pull-right"><span id="r2">0</span>(<span id="b2">0</span>)</span> 
 </div>
-<!-- bowlers -->
+<!-- bowlers 
 <div class="span3 thumbnail" style="margin-top:10px;text-align:left;">
 <span class="pull-right">O.W.M.R</span><br />
 <span id="bowl1"></span> <span id="bowl1s" class="pull-right"><span id="o1">10</span>.<span id="w1">2</span>.<span id="m1">4</span>.<span id="r1">40</span></span><br />
 <span id="bowl2"></span> <span id="bowl2s" class="pull-right"><span id="o2">10</span>.<span id="w2">2</span>.<span id="m2">4</span>.<span id="r2">40</span></span> 
 </div>
+-->
 <!-- number of balls 
 <div class="span6 thumbnail" id="no_balls" style="margin-top:10px;text-align:left;">
 <div class="span1 thumbnail">0</div>
@@ -185,6 +189,18 @@ Overs <span id="Team2Overs">0</span>.<span id="Team2Balls">0</span>
 </table>
 </div>
 </form>
+</div>
+<!--  Page 2 Ends -->
+<!--  Page 3 Starts -->
+
+<div class="container row-fluid" id="pg3">
+<div class="span12">
+	<p>Congragulations to the Winner</p>
+	<p id="winner">India</p>
+</div>
+<div class="span12" style="margin-left: 0px;margin-top: 60px;">
+	<div class="btn" id="new-match">New Match</div>
+</div>
 </div>
     </div> <!-- /container -->
 
